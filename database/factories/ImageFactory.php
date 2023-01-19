@@ -26,7 +26,7 @@ class ImageFactory extends Factory
 
         return [
             'user_id'=>$user_id,
-            'image_path' => 'ejemplo.png',
+            'image_path' => $faker->imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg'),
             'description' => $faker->sentence(12),
             'created_at' => $faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $faker->dateTimeBetween('-1 year', 'now'),
