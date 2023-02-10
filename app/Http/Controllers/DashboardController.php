@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index() {
-        $images = Image::orderBy('id','desc')->get();
+        $images = Image::where('user_id', '!=', auth()->id()) //get only the images that the user didn't post themselves
+            ->orderByDesc('id')
+            ->get();
         $toShow = $this->treatImages($images);
+
         return view('dashboard', compact('toShow'));
     }
 
