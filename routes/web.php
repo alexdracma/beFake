@@ -5,6 +5,7 @@ use App\Http\Controllers\ImageController;
 use \App\Http\Controllers\DashboardController;
 use \App\Http\Controllers\CommentsController;
 use \App\Http\Controllers\LikeController;
+use \App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/subir_imagen', [ImageController::class, 'upload'])->name('subir_imagen');
     Route::get('/imagen/{id}', [ImageController::class, 'detail'])->name('detalle_imagen');
+    Route::get('/mis_publicaciones', [ProfileController::class, 'index'])->name('mis_publicaciones');
     Route::post('/guardar_imagen', [ImageController::class, 'store'])->name('guardar_imagen');
     Route::post('/comentar/{id}', [CommentsController::class, 'store'])->name('comentar');
     Route::post('/togglelike/{id}', [LikeController::class, 'toggleLike']);

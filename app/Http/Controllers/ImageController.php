@@ -93,6 +93,6 @@ class ImageController extends Controller
             //dd($image);
             $image->save();
         }
-        return redirect()->route('dashboard');
+        return redirect()->route('mis_publicaciones');
     }
 }
