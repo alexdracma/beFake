@@ -1,3 +1,6 @@
+/* Bootstrap icons */
+@import '../../vendor/twbs/bootstrap-icons/font/bootstrap-icons';
+/* TailWind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

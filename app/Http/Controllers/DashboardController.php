@@ -24,11 +24,27 @@ class DashboardController extends Controller
                 'imgPath' => $image->image_path,
                 'description' => $image->description,
                 'uploadDateToNow' => Carbon::parse($image->created_at)->locale('es_es')->longRelativeToNowDiffForHumans(Carbon::now()),
+                'comments' => count($image->comments),
+                'imageId' => $image->id,
+                'userLiked' =>  $this->userLiked($image->likes),
+                'likes' => count($image->likes),
             ];
 
             array_push($toShow, $img);
         }
 
         return $toShow;
+    }
+
+    private function userLiked($likes) {
+        $currentUser = auth()->id();
+
+        foreach ($likes as $likeId) {
+            if ($likeId->user->id === $currentUser) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

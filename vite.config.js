@@ -9,7 +9,9 @@ export default defineConfig({
                 'resources/css/uploadImage.css',
 
                 'resources/js/app.js',
-                'resources/js/uploadImage.js'
+                'resources/js/uploadImage.js',
+                'resources/js/comment.js',
+                'resources/js/detailImage.js',
             ],
             refresh: [
                 ...refreshPaths,

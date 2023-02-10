@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use \App\Http\Controllers\DashboardController;
+use \App\Http\Controllers\CommentsController;
+use \App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,26 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/all-content', function () {
-    $images = \App\Models\Image::all();
-    foreach ($images as $image) {
-        echo "<img src='$image->image_path'>" . "<br>";
-        echo $image->description . "<br>";
-        echo $image->user->name . " " . $image->user->surname;
-        echo "<h3>Likes</h3><ul>";
-        echo "<li>Total " . count($image->likes) . " Likes</li>";
-        echo "</ul>";
-        echo "<h3>Comentarios</h3><ul>";
-        foreach ($image->comments as $comment) {
-            echo "<li>" . $comment->user->name . " dijo: " . $comment->content . "</li><br>";
-        }
-        echo "</ul>";
-        echo "<hr>";
-    }
-    die();
-   return false;
-});
-
 //Route::middleware([
 //    'auth:sanctum',
 //    config('jetstream.auth_session'),
@@ -52,7 +34,10 @@ Route::get('/all-content', function () {
 Route::middleware('auth')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/subir_imagen', [ImageController::class, 'upload'])->name('subir_imagen');
+    Route::get('/imagen/{id}', [ImageController::class, 'detail'])->name('detalle_imagen');
     Route::post('/guardar_imagen', [ImageController::class, 'store'])->name('guardar_imagen');
+    Route::post('/comentar/{id}', [CommentsController::class, 'store'])->name('comentar');
+    Route::post('/togglelike/{id}', [LikeController::class, 'toggleLike']);
 });
 
 //fortify
