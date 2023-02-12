@@ -29,10 +29,12 @@
             @auth
                 <ul class="list-reset flex justify-end flex-1 items-center">
                     <li class="mr-3">
-                        <a class="inline-block text-white no-underline hover:text-purple-600 hover:text-underline py-2 px-4 font-bold" href="#">Perfil</a>
+                        <a class="inline-block text-white no-underline hover:text-purple-600 hover:text-underline py-2
+                        px-4 font-bold" href="{{route('mis_publicaciones')}}">Perfil</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block text-white no-underline hover:text-purple-600 hover:text-underline py-2 px-4 font-bold" href="#">Subir imagen</a>
+                        <a class="inline-block text-white no-underline hover:text-purple-600 hover:text-underline py-2
+                            px-4 font-bold" href="{{route('subir_imagen')}}">Subir imagen</a>
                     </li>
                 </ul>
             @endauth
