@@ -39,7 +39,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/mis_publicaciones', [ProfileController::class, 'index'])->name('mis_publicaciones');
     Route::post('/guardar_imagen', [ImageController::class, 'store'])->name('guardar_imagen');
     Route::post('/comentar/{id}', [CommentsController::class, 'store'])->name('comentar');
-    Route::post('/togglelike/{id}', [LikeController::class, 'toggleLike']);
+    Route::post('/toggle_like/{id}', [LikeController::class, 'toggleLike']);
+    Route::delete('/borrar_comentario/{id}', [CommentsController::class, 'delete']);
 });
 
 //fortify

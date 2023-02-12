@@ -31,21 +31,18 @@
 
                 <div class="px-5 pb-5">
                     @foreach($image['comments'] as $comment)
-                        <p class="break-all">
-                            @if($isOwner)
-                                <i class="bi bi-x text-purple-600 text-xl mr-3 cursor-pointer" onclick="confi()"></i>
-                            @endif
-                            <span class="font-bold">{{$comment['publisher']}}:</span> {{$comment['content']}}</p>
+                        <div class="grid grid-cols-6">
+                            <p class="break-all col-span-5">
+                                @if($isOwner)
+                                    <i class="bi bi-x text-purple-600 text-xl mr-3 cursor-pointer"
+                                       data-token="{{csrf_token()}}" data-commentId="{{$comment['commentId']}}"></i>
+                                @endif
+                                <span class="font-bold">{{$comment['publisher']}}:</span> {{$comment['content']}}
+                            </p>
+                            <span class="text-xs pt-1.5 col-span-1 text-right">{{$comment['publishDateToNow']}}</span>
+                        </div>
                     @endforeach
                 </div>
-                <script>
-                    function confi() {
-                        const result = confirm("¿Seguro que quieres borrar el comentario?");
-                        if (result) {
-                            console.log('sii')
-                        }
-                    }
-                </script>
 
                 <form action="{{ route('comentar', ['id' => $image['imageId']]) }}" method="post" class="px-5 pb-5 hidden">
                     @csrf

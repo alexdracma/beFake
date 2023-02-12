@@ -17,4 +17,12 @@ class CommentsController extends Controller
 
         return redirect()->route('dashboard');
     }
+
+    public function delete(String $id) {
+       $dbComment = Comment::where('id', $id)->first();
+
+       if ($dbComment->user->id === auth()->id()) {
+           $dbComment->delete();
+       }
+    }
 }

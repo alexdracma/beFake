@@ -51,7 +51,8 @@ class ImageController extends Controller
             array_push($toShow, [
                 'publisher' => $comment->user->user_name,
                 'content' => $comment->content,
-                'publishDateToNow' => $this->dateToNow($comment->created_at)
+                'publishDateToNow' => $this->dateToNow($comment->created_at),
+                'commentId' => $comment->id,
             ]);
         }
         return $toShow;
