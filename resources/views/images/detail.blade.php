@@ -2,7 +2,7 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 mb-3" id="main">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg bg-purple-200 border-x-4 border-t-4 border-purple-600">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg bg-purple-200 border-4 border-purple-600">
                 <div class="flex flex-row p-5">
                     <img class="h-14 w-14 rounded-full object-cover border-4 border-purple-600"
                          src="{{asset('storage/' . $image['profilePhoto'])}}">
