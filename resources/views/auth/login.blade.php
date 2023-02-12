@@ -1,3 +1,4 @@
+@vite('resources/css/coolHr.css')
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -32,17 +33,26 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-center flex-col mt-4">
+
+                <x-jet-button class="bg-purple-600">
+                    {{ __('Iniciar sesión') }}
+                </x-jet-button>
+
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline mt-4 text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('¿Has olvidado la contraseña?') }}
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4 bg-purple-600">
-                    {{ __('Iniciar sesión') }}
-                </x-jet-button>
             </div>
         </form>
+        <hr class="my-6 hr-text" data-content="¿No tienes cuenta en BeFake.?">
+        <div class="flex items-center justify-center flex-col">
+            <x-jet-button class="ml-4 bg-purple-600">
+                <a href="{{route('registro')}}">{{ __('Crear cuenta') }}</a>
+            </x-jet-button>
+        </div>
+
     </x-jet-authentication-card>
 </x-guest-layout>
