@@ -6,6 +6,7 @@ use \App\Http\Controllers\DashboardController;
 use \App\Http\Controllers\CommentsController;
 use \App\Http\Controllers\LikeController;
 use \App\Http\Controllers\ProfileController;
+use \App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,14 +34,36 @@ Route::get('/', function () {
 //});
 
 Route::middleware('auth')->group(function() {
+
+    //Dashboard controller
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/subir_imagen', [ImageController::class, 'upload'])->name('subir_imagen');
-    Route::get('/imagen/{id}', [ImageController::class, 'detail'])->name('detalle_imagen');
+
+    //Profile controller
     Route::get('/mis_publicaciones', [ProfileController::class, 'index'])->name('mis_publicaciones');
-    Route::post('/guardar_imagen', [ImageController::class, 'store'])->name('guardar_imagen');
-    Route::post('/comentar/{id}', [CommentsController::class, 'store'])->name('comentar');
+
+    //Like controller
     Route::post('/toggle_like/{id}', [LikeController::class, 'toggleLike']);
-    Route::delete('/borrar_comentario/{id}', [CommentsController::class, 'delete']);
+
+    //User controller
+    Route::controller(UserController::class)->group(function () {
+        Route::prefix('gente')->group(function () {
+            Route::get('/', [UserController::class, 'gente'])->name('gente');
+            Route::get('/{user_name}', [UserController::class, 'index']);
+        });
+    });
+
+    //Image controller
+    Route::controller(ImageController::class)->group(function () {
+       Route::get('/subir_imagen', 'upload')->name('subir_imagen');
+       Route::get('/imagen/{id}', 'detail')->name('detalle_imagen');
+       Route::post('/guardar_imagen', 'store')->name('guardar_imagen');
+    });
+
+    //Comments controller
+    Route::controller(ImageController::class)->group(function () {
+        Route::post('/comentar/{id}', 'store')->name('comentar');
+        Route::delete('/borrar_comentario/{id}', 'delete');
+    });
 });
 
 //fortify
