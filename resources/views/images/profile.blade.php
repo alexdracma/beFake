@@ -15,7 +15,7 @@
                 <div class="p-0.5 col-span-3">
                     <a href="{{ route('detalle_imagen', ['id' => $image['imageId']]) }}">
                         <div class="cont relative w-full h-full aspect-square overflow-hidden outline outline-3 outline-purple-600 outline-offset-[-3px]">
-                            <img class="imagee" src="{{asset('images/' . $image['imgPath'])}}">
+                            <img class="imagee" src="{{asset('storage/images/' . $image['imgPath'])}}">
                             <div class="middle opacity-0 absolute top-2/4 left-2/4 text-center -translate-y-1/2 -translate-x-1/2 ease-in duration-300">
                                 <div class="text-2xl text-purple-600">
                                     <i class="bi bi-chat-right-dots mr-2"></i><span>{{$image['comments']}}</span>

@@ -10,7 +10,7 @@
                     <span class="ml-auto self-center h-fit">{{$image['uploadDateToNow']}}</span>
                 </div>
                 <div class="border-y-4 border-purple-600">
-                    <img src="{{asset('images/' . $image['imgPath'])}}" class="w-100">
+                    <img src="{{asset('storage/images/' . $image['imgPath'])}}" class="w-100">
                 </div>
                 <div class="p-5 grid grid-cols-12">
                     <div class="col-span-10">
