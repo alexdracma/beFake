@@ -20,7 +20,7 @@
     <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div class="pl-4 flex items-center">
             <div class="shrink-0 flex items-center">
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('indice') }}">
                     <img src="{{asset('/logo.svg')}}" class="block h-14 w-auto">
                 </a>
             </div>

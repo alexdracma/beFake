@@ -21,7 +21,7 @@ use \App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('indice');
 
 //Route::middleware([
 //    'auth:sanctum',
@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function() {
     Route::controller(UserController::class)->group(function () {
         Route::prefix('gente')->group(function () {
             Route::get('/', [UserController::class, 'gente'])->name('gente');
-            Route::get('/{user_name}', [UserController::class, 'index']);
+            Route::get('/{user_name}', [UserController::class, 'index'])->name('usuario');
         });
     });
 

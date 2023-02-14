@@ -21,6 +21,12 @@ class ImageController extends Controller
 
     public function detail(string $id) {
         $dbImg = Image::where('id', $id)->first();
+
+        if ($dbImg === null) {
+            $message = 'La foto a la que intentas acceder no existe';
+            return view('404', compact('message'));
+        }
+
         $image = $this->treatImage($dbImg);
 
         $authorizedUserId = auth()->id();

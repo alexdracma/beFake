@@ -16,7 +16,7 @@
                     <div><h1>NO HAY</h1></div>
                 </div>
             @else
-                @foreach($toShow as $image)
+                @foreach($toShow['images'] as $image)
                     <div class="p-0.5 col-span-3">
                         <a href="{{ route('detalle_imagen', ['id' => $image['imageId']]) }}">
                             <div class="cont relative w-full h-full aspect-square overflow-hidden outline outline-3 outline-purple-600 outline-offset-[-3px]">

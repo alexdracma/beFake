@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('indice') }}">
                         <img src="{{asset('/logo.svg')}}" class="block h-14 w-auto">
                     </a>
                 </div>
@@ -76,7 +76,8 @@
                 @endif
 
                 <!-- Settings Dropdown -->
-                <div class="ml-3 relative">
+                <div class="ml-3 flex relative">
+                    <a href="{{route('gente')}}" class="mr-4 mt-1.5"><i class="bi bi-search text-2xl text-purple-600"></i></a>
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
