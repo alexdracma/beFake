@@ -5,9 +5,16 @@
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 mb-3">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg bg-purple-200 border-4 border-purple-600">
                 <div class="flex flex-row p-5">
-                    <img class="h-14 w-14 rounded-full object-cover border-4 border-purple-600"
-                         src="{{asset('storage/' . $image['profilePhoto'])}}">
-                    <span class="ml-4 self-center h-fit font-weight-bolder text-lg">{{$image['username']}}</span>
+
+                    <a href="{{route('usuario', ['user_name' => $image['username']])}}">
+                        <img class="h-14 w-14 rounded-full object-cover border-4 border-purple-600"
+                             src="{{asset('storage/' . $image['profilePhoto'])}}">
+                    </a>
+
+                    <a href="{{route('usuario', ['user_name' => $image['username']])}}" class="ml-4 self-center h-fit font-weight-bolder text-lg">
+                        {{$image['username']}}
+                    </a>
+
                     <span class="ml-auto self-center h-fit">{{$image['uploadDateToNow']}}</span>
                 </div>
                 <div class="border-y-4 border-purple-600">

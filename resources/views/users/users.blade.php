@@ -9,11 +9,18 @@
                         <img class="h-14 w-14 rounded-full object-cover border-4 border-purple-600"
                             src="{{asset('storage/' . $usuario['profile_photo'])}}">
                     </a>
-                    <span class="ml-4 self-center h-fit font-weight-bolder text-lg">{{$usuario['user_name']}}</span>
-{{--                    <span>{{$usuario['full_name']}}</span>--}}
+                    <a href="{{route('usuario', ['user_name' => $usuario['user_name']])}}" class="ml-4 self-center h-fit font-weight-bolder text-lg">
+                        <span>{{$usuario['full_name']}}</span><br>
+                        <span class="text-slate-500 text-sm">{{'@' . $usuario['user_name']}}</span>
+                    </a>
                 </div>
                 <hr class="border-purple-600">
             @endforeach
+            </div>
+            <div class="mt-3 flex justify-center">
+                <div class="border-4 rounded-lg border-purple-600">
+                    @include('partials.pagination', ['paginator' => $paginator, 'elements' => $elements, 'showText' => false])
+                </div>
             </div>
         </div>
     </div>

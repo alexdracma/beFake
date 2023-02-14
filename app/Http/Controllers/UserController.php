@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -52,10 +53,13 @@ class UserController extends Controller
 
         $dbUsers = User::where('id', '!=', auth()->id())
             ->orderByDesc('id')
-            ->get();
-        $toShow = $this->tratarUsuarios($dbUsers);
+            ->paginate(6);
 
-        return view('users.users', compact('toShow'));
+        $toShow = $this->tratarUsuarios($dbUsers);
+        $paginator = $dbUsers;
+        $elements = $paginator->links()->elements;
+
+        return view('users.users', compact('toShow', 'paginator', 'elements'));
     }
 
     private function tratarUsuarios($usuarios) {
