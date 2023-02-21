@@ -92,7 +92,10 @@ class UserController extends Controller
 
         $dbUsers = User::where([
             ['id', '!=', auth()->id()],
-            ['name', 'LIKE', '%'. $validatedData['query'] .'%']
+            [function ($query) use ($validatedData) {
+                $query->where('name','like','%'. $validatedData['query'] .'%')
+                    ->orWhere('user_name','like','%'. $validatedData['query'] .'%');
+            }]
             ])
             ->orderByDesc('id')
             ->paginate(6);
