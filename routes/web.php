@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function() {
             Route::get('/', [UserController::class, 'gente'])->name('gente');
             Route::get('/{user_name}', [UserController::class, 'index'])->name('usuario');
         });
+        Route::post('/busqueda', 'search')->name('buscar');
     });
 
     //Image controller

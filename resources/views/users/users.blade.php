@@ -2,6 +2,14 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 mb-3" id="main">
+
+            {{-- Search --}}
+            <form method="POST" action="{{ route('buscar') }}" class="mb-2 m-auto w-fit">
+                @csrf
+                <input required type="search" class="border-4 rounded-lg bg-purple-200 border-purple-600" placeholder="Busca por nombre..." name="query">
+                <input type="submit" class="px-4 py-3 rounded-lg bg-purple-600 text-purple-200" value="Buscar">
+            </form>
+
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg bg-purple-200 border-4 border-purple-600">
             @foreach($toShow as $usuario)
                 <div class="flex flex-row p-5">

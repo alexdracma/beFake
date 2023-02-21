@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -77,7 +78,30 @@ class UserController extends Controller
         return($toShow);
     }
 
-    public function search() {
+    public function search(Request $req) {
+
+        $validator = Validator::make($req->all(), [
+            'query' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->gente(); //if query is not provided go back to users view
+        }
+
+        $validatedData = $validator->validated();
+
+        $dbUsers = User::where([
+            ['id', '!=', auth()->id()],
+            ['name', 'LIKE', '%'. $validatedData['query'] .'%']
+            ])
+            ->orderByDesc('id')
+            ->paginate(6);
+
+        $toShow = $this->tratarUsuarios($dbUsers);
+        $paginator = $dbUsers;
+        $elements = $paginator->links()->elements;
+
+        return view('users.users', compact('toShow', 'paginator', 'elements'));
 
     }
 }

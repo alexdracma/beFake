@@ -1,4 +1,4 @@
-
+{{--TODO: implement infinite scroll--}}
 <x-app-layout>
     <div class="py-12">
         @foreach($toShow as $image)
