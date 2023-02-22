@@ -12,6 +12,8 @@ export default defineConfig({
                 'resources/js/uploadImage.js',
                 'resources/js/comment.js',
                 'resources/js/detailImage.js',
+                'resources/js/friendship.js',
+                'resources/js/friendRequest.js',
             ],
             refresh: [
                 ...refreshPaths,

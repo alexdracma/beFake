@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
-    public function index(string $user_name) {
+    public function index(string $user_name, bool $isOwner = false) {
+
         $dbUser = User::where('user_name', $user_name)->first();
 
         if ($dbUser === null) {
@@ -18,9 +19,17 @@ class UserController extends Controller
             return view('404', compact('message'));
         }
 
+        if ( $isOwner || $user_name === auth()->user()->user_name) {
+            $isOwner = true;
+        }
+
         $toShow = $this->tratarUsuario($dbUser);
 
-        return view('users.user', compact('toShow'));
+        return view('users.user', compact('toShow', 'isOwner'));
+    }
+
+    public function owner() {
+        return $this->index(auth()->user()->user_name, true);
     }
 
     private function tratarUsuario($usuario) {
@@ -28,8 +37,12 @@ class UserController extends Controller
             'user_name' => $usuario->user_name,
             'profile_photo' => $usuario->profile_photo_path,
             'full_name' => $usuario->name . ' ' . $usuario->surname,
-            'followers' => 'To implement',
-            'images' => $this->tratarImagenes($usuario->images)
+            'friends' => $usuario->getFriendsCount(), //implement
+            'numOfImages' => count($usuario->images),
+            'images' => $this->tratarImagenes($usuario->images),
+            'user_id' => $usuario->id,
+            'friendRequestPending' => $usuario->hasFriendRequestFrom(auth()->user()),
+            'userAndAuthAreFriends' => $usuario->isFriendWith(auth()->user()),
         ];
     }
 
@@ -71,7 +84,6 @@ class UserController extends Controller
                 'user_name' => $usuario->user_name,
                 'profile_photo' => $usuario->profile_photo_path,
                 'full_name' => $usuario->name . ' ' . $usuario->surname,
-                'followers' => 'To implement'
             ]);
         }
 

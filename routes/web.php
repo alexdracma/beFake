@@ -7,6 +7,7 @@ use \App\Http\Controllers\CommentsController;
 use \App\Http\Controllers\LikeController;
 use \App\Http\Controllers\ProfileController;
 use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\FriendsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +39,6 @@ Route::middleware('auth')->group(function() {
     //Dashboard controller
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    //Profile controller
-    Route::get('/mis_publicaciones', [ProfileController::class, 'index'])->name('mis_publicaciones');
-
     //Like controller
     Route::post('/toggle_like/{id}', [LikeController::class, 'toggleLike']);
 
@@ -50,6 +48,7 @@ Route::middleware('auth')->group(function() {
             Route::get('/', [UserController::class, 'gente'])->name('gente');
             Route::get('/{user_name}', [UserController::class, 'index'])->name('usuario');
         });
+        Route::get('/mis_publicaciones', 'owner')->name('mis_publicaciones');
         Route::post('/busqueda', 'search')->name('buscar');
     });
 
@@ -64,6 +63,16 @@ Route::middleware('auth')->group(function() {
     Route::controller(ImageController::class)->group(function () {
         Route::post('/comentar/{id}', 'store')->name('comentar');
         Route::delete('/borrar_comentario/{id}', 'delete');
+    });
+
+    //Friends controller
+    Route::controller(FriendsController::class)->group(function () {
+        Route::get('/peticiones_amistad', 'show')->name('peticiones_amistad');
+        Route::get('/amixes/{user}', 'index')->name('ver_amixes');
+        Route::post('/amix/{user}', 'store');
+        Route::patch('/aceptar/{user}', 'accept')->name('aceptar_amistad');
+        Route::patch('/denegar/{user}', 'deny')->name('denegar_amistad');
+        Route::delete('/amix/{user}', 'destroy');
     });
 });
 
