@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function() {
     });
 
     //Comments controller
-    Route::controller(ImageController::class)->group(function () {
+    Route::controller(CommentsController::class)->group(function () {
         Route::post('/comentar/{id}', 'store')->name('comentar');
         Route::delete('/borrar_comentario/{id}', 'delete');
     });
