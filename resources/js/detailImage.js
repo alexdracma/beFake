@@ -55,6 +55,7 @@ deletes.forEach(x => {
 
 async function deleteComment(token, commentId) {
     const fetchTo = '/borrar_comentario/' + commentId
+
     fetch(fetchTo , {
         method: 'DELETE',
         mode: 'cors',
